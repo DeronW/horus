@@ -15,9 +15,9 @@
 * [x] ``click`` 事件, 默认全部监听
 * [x] ``hover`` 事件必须绑定监听
 * [x] ``link`` 事件, 默认全部监听
-* [] ``scroll`` 事件, TODO
-* [] 业务流程 事件, TODO
-* [] React / Vue 支持, TODO
+* [ ] ``scroll`` 事件, TODO
+* [ ] 业务流程 事件, TODO
+* [ ] React / Vue 支持, TODO
 
 ## Installation
 
