@@ -3,14 +3,17 @@
 
 ![eye](https://raw.githubusercontent.com/FaceFE/horus/master/images/horus.jpg)
 
-微侵入式 网页统计工具
+网页统计工具
 
 ### requirement
 
 * 网页编码需要采用 utf-8
-* ``click`` 事件, 默认全部监听
-* ``hover`` 事件必须绑定监听
-* ``link`` 事件, 默认全部监听
+* 完整支持PC端, 不完整支持移动端
+
+[x] ``click`` 事件, 默认全部监听
+[x] ``hover`` 事件必须绑定监听
+[x] ``link`` 事件, 默认全部监听
+[ ] ``scroll`` 事件, TODO
 
 ## Installation
 

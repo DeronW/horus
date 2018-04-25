@@ -1,4 +1,11 @@
 function Click(event) {
+    let target = event.target;
+    while (target && target != document) {
+        if (target.tagName == 'A' && target.href != '')
+            return;
+        target = target.parentNode
+    }
+
     return {
         event: 'click',
         title: get_title(event.target),

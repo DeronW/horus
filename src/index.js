@@ -45,6 +45,8 @@ class Horus {
         // 开始监听
         this.ready(this.start.bind(this))
         // this.ready(this.observe.bind(this)) // not ready for this
+        // this.overloadWindowFunctions()
+        // this.supplement()
     }
 
     _setOption(k, v) {
@@ -94,6 +96,19 @@ class Horus {
         })
     }
 
+    overloadWindowFunctions() {
+        // window.open = function () {
+        //     throw Error('TODO')
+        // }
+        // location.href = function () {
+        //     throw Error('TODO')
+        // }
+    }
+
+    supplement() {
+        // supplement last unsuccessed message
+    }
+
     addListener(name, fn) {
         if (!this.listners[name]) throw Error('Horus: 没有这种监听类型');
         this.listners[name].push(fn)
@@ -109,24 +124,23 @@ class Horus {
     }
 
     start() {
-        let _this = this;
 
+        // 点击事件
         if (this.opt.listen.click) {
             document.addEventListener('click', e => this.dispatch('click', e))
         }
 
+        // hover 事件
         if (this.opt.listen.hover) {
             document.addEventListener('mouseover', Throttle(function (e) {
                 this.dispatch('hover', e)
             }.bind(this), 300))
         }
 
-        // if (listen.link) {
-        //     let asss = document.querySelectorAll('a[href]')
-        //     asss.forEach(i => {
-        //         i.addEventListener('click', event => this.inpour('link'))
-        //     })
-        // }
+        // 链接点击
+        if (this.opt.listen.link) {
+            document.addEventListener('click', e => this.dispatch('link', e))
+        }
 
         // if (listen.history) {
         //     let wrapper = function (type) {
