@@ -9,11 +9,15 @@
 
 * 网页编码需要采用 utf-8
 * 完整支持PC端, 不完整支持移动端
+* 需要设置 account_id
+* hover 事件比较特殊, 需要手动设置, 只有给元素添加 ``data-horus`` 属性后, 才会记录 hover 事件
 
 * [x] ``click`` 事件, 默认全部监听
 * [x] ``hover`` 事件必须绑定监听
 * [x] ``link`` 事件, 默认全部监听
-* [ ] ``scroll`` 事件, TODO
+* [] ``scroll`` 事件, TODO
+* [] 业务流程 事件, TODO
+* [] React / Vue 支持, TODO
 
 ## Installation
 
@@ -60,7 +64,7 @@ https://www.npmjs.com/package/@facepp/horus
         url: 'where to report event'
     })
 
-    Eye.send('')
+    Eye.send('') // 目前受限于后端格式要求, 这里需要指定格式
 
 ```
 
@@ -71,25 +75,31 @@ https://www.npmjs.com/package/@facepp/horus
 alias       | 字符串    |  |    全局别名 | 方便全局调用(仅CDN引入方式下有效)
 account_id  |字符串     |   |   客户ID|用于跟踪用户上下文行为, 推荐使用与session id对应的标识
 url         |字符串     |是 |   服务地址| 上报信息的服务器地址(不能带有?参数)
-extra       |json       |   |   额外标记|扩展信息, 某些情况下传入日志服务的特殊信息
-sendComplete|function   |   |   完成回掉|发送完统计数据之后的回掉
 
 ### 上报数据
 
 ```javascript
-    {
-        "timestamp": 1524559613,
-        "domain": "www.faceplusplus.com",
-        "path": "/financial-solution/",
-        "account_id": "...",
-        "extra_data": "...",
-        "event": "open|close|click|link|hover|state",
-        "info": {
-            "xpath": "/html/body/div/div[2]/div/div[2]/div/section/pre/code",
-            "title": "...",
-            // etc...
-        }
+{
+    time: 1504520237556, // ms
+    project: "FACEPP-WEB",
+    event: "click",
+    properties: { 
+        cookie: "",
+        user_brand: "",
+        user_model: "",
+        user_os: "",
+        user_explorer: "",
+        account_id: "xxxxxxxxxxx",
     }
+    custom: {
+        domain: 'www.faceplusplus.com.cn',
+        version: `Horus/0.1.0`,
+        xpath: '',
+        title: '标题',
+        desc: '这是一段描述'
+    }
+
+}
 ```
 
 ### 抓取数据说明
@@ -100,6 +110,8 @@ sendComplete|function   |   |   完成回掉|发送完统计数据之后的回�
 * 图片
 * 链接
 
+### TODO List
+
 默认抓取事件并尝试从上下文中获取当前按钮的说明信息
 
 * 进入页面
@@ -108,9 +120,8 @@ sendComplete|function   |   |   完成回掉|发送完统计数据之后的回�
 
 打开 -> 关闭 页面的时间内记录2次动作并估计时间
 
-指定抓取范围
 
-给人以元素设置 ``ho-click`` , ``ho-hover`` 属性, 然后会监听该元素的对应事件
+指定抓取范围
 
 主动上报事件
 

@@ -9,8 +9,7 @@ function Serialize(data, Horus) {
         version: `Horus/${Horus._VERSION}`,
         xpath: '',
         title: '',
-        desc: '',
-        repeat: 1
+        desc: ''
     }, data)
 
     let schema = {
