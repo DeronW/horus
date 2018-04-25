@@ -23,7 +23,7 @@
 
 * 下载生产环境代码 (推荐下载当前最新版本)
 
-https://github.com/FaceFE/horus/releases
+https://raw.githubusercontent.com/HonourFE/horus/master/horus.min.js
 
 * 通过 npm 安装
 
