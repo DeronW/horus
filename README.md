@@ -5,9 +5,16 @@
 
 微侵入式 网页统计工具
 
+### requirement
+
+* 网页编码需要采用 utf-8
+* ``click`` 事件, 默认全部监听
+* ``hover`` 事件必须绑定监听
+* ``link`` 事件, 默认全部监听
+
 ## Installation
 
-* 下载生产环境代码 (推荐下载当前最新版本)
+* 下载生产环境代码 (推荐下载当前最新版本)
 
 https://github.com/FaceFE/horus/releases
 
@@ -57,11 +64,11 @@ https://www.npmjs.com/package/@facepp/horus
 ### 配置参数说明
 
 字段 | 类型 | 必填 | 说明 | 用途
-- | :-: | -: | - | -
-alias       | 字符串    |  |    全局别名 | 方便全局调用
-account_id  |字符串     |   |   客户ID|用于跟踪用户上下文行为, 推荐使用与session id对应的标识
+--- | --- | --- | --- | ---
+alias       | 字符串    |  |    全局别名 | 方便全局调用(仅CDN引入方式下有效)
+account_id  |字符串     |   |   客户ID|用于跟踪用户上下文行为, 推荐使用与session id对应的标识
 url         |字符串     |是 |   服务地址| 上报信息的服务器地址(不能带有?参数)
-extra       |json       |   |   额外标记|扩展信息, 某些情况下传入日志服务的特殊信息
+extra       |json       |   |   额外标记|扩展信息, 某些情况下传入日志服务的特殊信息
 sendComplete|function   |   |   完成回掉|发送完统计数据之后的回掉
 
 ### 上报数据
@@ -90,7 +97,7 @@ sendComplete|function   |   |   完成回掉|发送完统计数据之后的回�
 * 图片
 * 链接
 
-默认抓取事件并尝试从上下文中获取当前按钮的说明信息
+默认抓取事件并尝试从上下文中获取当前按钮的说明信息
 
 * 进入页面
 * 离开页面
@@ -100,16 +107,16 @@ sendComplete|function   |   |   完成回掉|发送完统计数据之后的回�
 
 指定抓取范围
 
-给人以元素设置 ``ho-click`` , ``ho-hover`` 属性, 然后会监听该元素的对应事件
+给人以元素设置 ``ho-click`` , ``ho-hover`` 属性, 然后会监听该元素的对应事件
 
-主动上报事件
+主动上报事件
 
 ```javascript
 
     // 通过 CDN 引入lib的使用方式
     // 变量别名是通过配置的 alias 参数生成 
 
-    $horus.report('special event', '这是一段需要被记录的数据')
+    $horus.report('special event', '这是一段需要被记录的数据')
 
 ```
 
@@ -117,6 +124,6 @@ sendComplete|function   |   |   完成回掉|发送完统计数据之后的回�
 
     // 通过 import 引入的lib使用方式
     // 假设已经创建了上报对象 const $horus = new Horus({...config})
-    $horus.report('special event', '这是一段需要被记录的数据')
+    $horus.report('special event', '这是一段需要被记录的数据')
 
 ```

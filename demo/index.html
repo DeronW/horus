@@ -1,0 +1,24 @@
+<head>
+    <meta charset="utf-8" />
+    <script>
+        _FPP_Horus_Config = {
+            debug: true,
+            url: 'http://localhost:8000/?ver=1',
+            project: 'xxx',
+            account_id: 'aid',
+            request_type: 'ajax'
+        }    
+    </script>
+    <script src="../dist/horus.min.js"></script>
+    <script>
+    $horus.report("test")
+    </script>
+</head>
+
+<body>
+    <a>AAA</a>
+
+    <a style="display: block; background: #ccc; padding: 10px;" data-horus="test hover">
+        <div>BBB</div>
+    </a>
+</body>
