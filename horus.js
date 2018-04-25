@@ -1,8 +1,3 @@
-/*!
- *
- * @author   
- * @license  BSD
- */
 
 import Horus from './src'
 

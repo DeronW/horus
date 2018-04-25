@@ -1,3 +1,5 @@
+import './version.js'
+
 import Serialize from './serialize.js'
 import {
     Base64
