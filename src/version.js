@@ -1,4 +1,4 @@
 /*!
- *  Horus version 0.3.0
+ * Horus version x.x.x
  * @license  BSD
  */

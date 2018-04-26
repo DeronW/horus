@@ -1,5 +1,7 @@
 import './version.js'
-
+import {
+    SchemaWrapper
+} from './schema.js'
 import Serialize from './serialize.js'
 
 import request, {
@@ -12,9 +14,10 @@ import Cookie from './cookie.js'
 
 class Horus {
     constructor(options) {
+        this._VERSION = '0.0.5'
         this.opt = Object.assign({
             url: '',
-            project: '',
+            // project: '',
             account_id: Cookie.getAID(),
             debug: false,
             request_type: 'auto',
@@ -116,8 +119,8 @@ class Horus {
     dispatch(name, event) {
         (this.listners[name] || []).forEach(fn => {
             if (typeof fn === 'function') {
-                let data = fn(event)
-                data && this.report(Serialize(data, this))
+                let data = fn(event);
+                data && this.report(SchemaWrapper(data, this))
             }
         })
     }
@@ -162,7 +165,7 @@ class Horus {
     report(data) {
         let url = this.opt.url;
         if (url.indexOf('?') < 0) url += '?'
-        url += '&data=' + (typeof data === 'object' ? Serialize.encode(data) : data)
+        url += '&data=' + Serialize(data)
         url += '&_=' + (new Date()).getTime()
 
         MakeRequest(this.request_type, url)
