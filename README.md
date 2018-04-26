@@ -38,14 +38,14 @@ https://www.npmjs.com/package/@facepp/horus
 <script>
 !function (path, config) {
     if (window[name])
-        throw Error('Horus ERROR: name[' + name + '] has been occupied');
+        throw Error('Horus ERROR: name[' + name + '] occupied');
     window['_FPP_Horus_Config'] = config;
     var t = document.createElement("script")
     t.async = 1
-    t.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + path
+    t.src = path
     var tags = document.getElementsByTagName("script")[0]
     tags.parentNode.insertBefore(t, tags)
-}("assets.growingio.com/2.1/gio.js", {
+}("//bj-qa-test-asset.oss-cn-beijing.aliyuncs.com/javascripts/horus-0.0.2.min.js", {
     alias: '$horus',
     account_id: '...',
     url: '__required__'
