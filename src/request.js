@@ -24,7 +24,12 @@ function ImageRequest(url) {
     })
 }
 
+function MakeRequest(request_type, url) {
+    return request_type == 'image' ? ImageRequest(url) : AjaxRequest(url)
+}
+
 export {
+    MakeRequest,
     ImageRequest,
     AjaxRequest
 }

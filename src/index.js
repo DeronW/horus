@@ -1,24 +1,21 @@
 import './version.js'
 
 import Serialize from './serialize.js'
-import {
-    Base64
-} from 'js-base64'
+
 import request, {
-    ImageRequest,
-    AjaxRequest
+    MakeRequest
 } from './request.js'
+
 import Listeners from './listeners'
 import Throttle from './throttle.js'
+import Cookie from './cookie.js'
 
 class Horus {
     constructor(options) {
-        this._VERSION = '0.1.0'
         this.opt = Object.assign({
             url: '',
             project: '',
-            account_id: '',
-            user_id: '', // ??? 接口要求传入的数据
+            account_id: Cookie.getAID(),
             debug: false,
             request_type: 'auto',
             listen: {
@@ -165,12 +162,10 @@ class Horus {
     report(data) {
         let url = this.opt.url;
         if (url.indexOf('?') < 0) url += '?'
-        url += '&data=' + (typeof data === 'object' ? Base64.encode(data) : data)
+        url += '&data=' + (typeof data === 'object' ? Serialize.encode(data) : data)
         url += '&_=' + (new Date()).getTime()
 
-        this.requestType == 'image' ?
-            ImageRequest(url) :
-            AjaxRequest(url)
+        MakeRequest(this.request_type, url)
     }
 }
 

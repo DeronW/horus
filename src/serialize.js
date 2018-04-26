@@ -35,4 +35,8 @@ function Serialize(data, Horus) {
     return Base64.encode(JSON.stringify(schema))
 }
 
+Serialize.encode = function (data) {
+    Base64.encode(JSON.stringify(data))
+}
+
 export default Serialize
