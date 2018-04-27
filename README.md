@@ -45,7 +45,10 @@ https://www.npmjs.com/package/@facepp/horus
     t.src = path
     var tags = document.getElementsByTagName("script")[0]
     tags.parentNode.insertBefore(t, tags)
-}("//bj-qa-test-asset.oss-cn-beijing.aliyuncs.com/javascripts/horus-0.0.2.min.js", '__log_server_url__');
+}("//bj-qa-test-asset.oss-cn-beijing.aliyuncs.com/javascripts/horus-0.0.6.min.js", {
+    url: '__log_server_url__',
+    account_id: ''
+});
 </script>
 ```
 
