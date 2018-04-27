@@ -13,7 +13,7 @@
 * hover 事件比较特殊, 需要手动设置, 只有给元素添加 ``data-horus`` 属性后, 才会记录 hover 事件
 
 * [x] ``click`` 事件, 默认全部监听
-* [x] ``hover`` 事件必须绑定监听
+* [x] ``hover`` 事件**必须**绑定监听
 * [x] ``link`` 事件, 默认全部监听
 * [ ] ``scroll`` 事件, TODO
 * [ ] 业务流程 事件, TODO
@@ -37,17 +37,15 @@ https://www.npmjs.com/package/@facepp/horus
 ```html
 <script>
 !function (path, config) {
-    if (window[name])
-        throw Error('Horus ERROR: name[' + name + '] occupied');
     window['_FPP_Horus_Config'] = config;
-    var t = document.createElement("script")
-    t.async = 1
-    t.src = path
-    var tags = document.getElementsByTagName("script")[0]
-    tags.parentNode.insertBefore(t, tags)
-}("//bj-qa-test-asset.oss-cn-beijing.aliyuncs.com/javascripts/horus-0.0.6.min.js", {
-    url: '__log_server_url__',
-    account_id: ''
+    var t = document.createElement("script");
+    t.async = 1;
+    t.src = path;
+    var tags = document.getElementsByTagName("script")[0];
+    tags.parentNode.insertBefore(t, tags);
+}("//__js_url__", {
+    project: '__PROJECT_NAME__'
+    url: '__REPORT_TO__',
 });
 </script>
 ```
@@ -58,22 +56,28 @@ https://www.npmjs.com/package/@facepp/horus
 
     import Horus from '@facepp/horus'
 
-    const Eye = new Horus({
-        account_id: 'a union identify',
-        url: 'where to report event'
+    const $horus = new Horus({
+        project: '__PROJECT_NAME__',
+        url: '__REPORT_TO__'
     })
 
-    Eye.send('') // 目前受限于后端格式要求, 这里需要指定格式
+    horus.occur('__EVENT_TYPE__', '__JSON_DATA__')
 
 ```
 
 ### 配置参数说明
 
+javascript文件区分国内国外的加载地址
+
+* 国内加载地址[https://bj-qa-test-asset.oss-cn-beijing.aliyuncs.com/javascripts/horus-0.0.6.min.js](https://bj-qa-test-asset.oss-cn-beijing.aliyuncs.com/javascripts/horus-0.0.6.min.js)
+* 国外加载地址 [https://bj-qa-test-asset.oss-cn-beijing.aliyuncs.com/javascripts/horus-0.0.6.min.js](https://bj-qa-test-asset.oss-cn-beijing.aliyuncs.com/javascripts/horus-0.0.6.min.js)
+
+
 字段 | 类型 | 必填 | 说明 | 用途
 --- | --- | --- | --- | ---
-alias       | 字符串    |  |    全局别名 | 方便全局调用(仅CDN引入方式下有效)
-account_id  |字符串     |   |   客户ID|用于跟踪用户上下文行为, 推荐使用与session id对应的标识
-url         |字符串     |是 |   服务地址| 上报信息的服务器地址(不能带有?参数)
+alias       | 字符串    |  |    全局别名 | 方便全局调用
+url         |字符串     |是 |   服务地址| 上报信息的服务器地址(不能带有\?参数)
+project     |字符串     |是 |   不同的项目需要配置不同的项目名称
 
 ### 上报数据
 

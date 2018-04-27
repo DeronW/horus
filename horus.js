@@ -1,16 +1,20 @@
-
 import Horus from './src'
 
 const GLOBAL_NAME = '_FPP_Horus'
 const GLOBAL_ALIAS_NAME = '$horus'
 const GLOBAL_CONFIG = '_FPP_Horus_Config'
 
-const config = window[GLOBAL_CONFIG] || {}
+document.addEventListener('DOMContentLoaded', function () {
 
-let alias_name = config.alias
-delete config.alias
+    const config = window[GLOBAL_CONFIG] || {}
 
-window[GLOBAL_NAME] = new Horus(config);
+    if (config.alias) {
+        GLOBAL_ALIAS_NAME = config.alias
+        delete config.alias
+    }
 
-if (GLOBAL_ALIAS_NAME && typeof window[GLOBAL_ALIAS_NAME] === 'undefined')
-    window[GLOBAL_ALIAS_NAME] = window[GLOBAL_NAME];
+    window[GLOBAL_NAME] = new Horus(config).start()
+
+    if (GLOBAL_ALIAS_NAME && typeof window[GLOBAL_ALIAS_NAME] === 'undefined')
+        window[GLOBAL_ALIAS_NAME] = window[GLOBAL_NAME];
+})

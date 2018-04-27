@@ -1,6 +1,7 @@
 {
     "name": "horus",
     "main": "src/index.js",
+    "version": "",
     "scripts": {
         "start": "webpack --mode=development --watch",
         "test": "",

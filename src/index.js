@@ -1,7 +1,5 @@
 import './version.js'
-import {
-    SchemaWrapper
-} from './schema.js'
+import Schema from './schema.js'
 import Serialize from './serialize.js'
 
 import request, {
@@ -14,18 +12,18 @@ import Cookie from './cookie.js'
 
 class Horus {
     constructor(options) {
-        this._VERSION = '0.0.5'
+        this._done = false
         this.opt = Object.assign({
             url: '',
             // project: '',
-            account_id: Cookie.getAID(),
+            account_id: Cookie.getAccountID(),
             debug: false,
             request_type: 'auto',
             listen: {
                 click: true,
-                link: true,
+                link: false,
                 hover: true,
-                history: true,
+                history: false,
                 scroll: false
             }
         }, options)
@@ -37,18 +35,7 @@ class Horus {
             history: [Listeners.History],
             scroll: []
         }
-
-        if (window._FPP_Horus) {
-            throw Error('不能重复创建Horus对象')
-        }
-
-        window._FPP_Horus = this;
-
-        // 开始监听
-        this.ready(this.start.bind(this))
-        // this.ready(this.observe.bind(this)) // not ready for this
-        // this.overloadWindowFunctions()
-        // this.supplement()
+        // then, should call this.start()
     }
 
     _setOption(k, v) {
@@ -98,19 +85,6 @@ class Horus {
         })
     }
 
-    overloadWindowFunctions() {
-        // window.open = function () {
-        //     throw Error('TODO')
-        // }
-        // location.href = function () {
-        //     throw Error('TODO')
-        // }
-    }
-
-    supplement() {
-        // supplement last unsuccessed message
-    }
-
     addListener(name, fn) {
         if (!this.listners[name]) throw Error('Horus: 没有这种监听类型');
         this.listners[name].push(fn)
@@ -120,12 +94,18 @@ class Horus {
         (this.listners[name] || []).forEach(fn => {
             if (typeof fn === 'function') {
                 let data = fn(event);
-                data && this.report(SchemaWrapper(data, this))
+                data && this.report(data)
             }
         })
     }
 
+    // 开始监听
     start() {
+        if (this._done) {
+            throw Error('Horus 不能重复监听全局事件')
+        } else {
+            this._done = true
+        }
 
         // 点击事件
         if (this.opt.listen.click) {
@@ -140,34 +120,45 @@ class Horus {
         }
 
         // 链接点击
-        if (this.opt.listen.link) {
-            document.addEventListener('click', e => this.dispatch('link', e))
-        }
-
-        // if (listen.history) {
-        //     let wrapper = function (type) {
-        //         let orig = history[type]
-        //         return function () {
-        //             this.inpour('history')(arguments)
-
-        //             var rv = orig.apply(this, arguments)
-        //             var e = new Event(type)
-        //             e.arguments = arguments
-        //             window.dispatchEvent(e)
-        //             return rv;
-        //         };
-        //     }
-
-        //     history.pushState = wrapper('pushState')
+        // if (this.opt.listen.link) {
+        //     document.addEventListener('click', e => this.dispatch('link', e))
         // }
+        return this
     }
 
-    report(data) {
+    decorator(event_type, data) {
+        for (let i in data)
+            data[i] = escape(data[i]);
+
+        let schema = {
+            time: new Date().getTime(),
+            project: this.opt.project,
+            event_id: new Date().getTime() + "-" + Math.random().toString().substr(2),
+            event: event_type,
+            properties: Object.assign({
+                cookie: '',
+                account_id: Cookie.getAccountID(),
+                user_id: Cookie.geUserID()
+            }, Schema.Properties),
+            custom: data
+        }
+
+
+        if (this.opt.debug) {
+            console.log('Horus reporting: ', schema)
+        }
+        return schema
+    }
+
+    occur(event_type, data) {
+        this._report(event_type, data)
+    }
+
+    _report(event_type, data) {
         let url = this.opt.url;
         if (url.indexOf('?') < 0) url += '?'
-        url += '&data=' + Serialize(data)
+        url += '&data=' + Serialize(this.decorator(event_type, data))
         url += '&_=' + (new Date()).getTime()
-
         MakeRequest(this.request_type, url)
     }
 }
