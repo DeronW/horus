@@ -22,7 +22,6 @@ class Horus {
             request_type: "auto",
             listen: {
                 click: true,
-                link: false,
                 hover: true,
                 history: false,
                 scroll: false
@@ -31,7 +30,6 @@ class Horus {
 
         this.listners = {
             click: [Listeners.Click],
-            link: [Listeners.Link],
             hover: [Listeners.Hover],
             history: [Listeners.History],
             scroll: []
@@ -121,10 +119,6 @@ class Horus {
             }.bind(this), 300))
         }
 
-        // 链接点击
-        // if (this.opt.listen.link) {
-        //     document.addEventListener("click", e => this.dispatch("link", e))
-        // }
         return this
     }
 
