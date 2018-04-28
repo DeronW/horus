@@ -16,7 +16,7 @@ class Horus {
         this._done = false
         this.opt = Object.assign({
             url: "",
-            // project: "",
+            project: "Empty",
             account_id: Cookie.getAccountID(),
             debug: false,
             request_type: "auto",
@@ -53,7 +53,7 @@ class Horus {
         }
 
         for (let k in options) {
-            this._setOption(k, key[k])
+            this._setOption(k, options[k])
         }
     }
 
