@@ -201,8 +201,6 @@ project (必填)    |字符串     |  不同的项目需要配置不同的项目
 
 ```
 
-参考: [https://reactjs.org/blog/2017/09/08/dom-attributes-in-react-16.html](https://reactjs.org/blog/2017/09/08/dom-attributes-in-react-16.html)
-
 ### Vue Support
 
 TODO:
