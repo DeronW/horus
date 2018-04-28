@@ -1,7 +1,7 @@
 
 # Horus
 
-![eye](https://raw.githubusercontent.com/FaceFE/horus/master/images/horus.jpg)
+![eye](https://raw.githubusercontent.com/HonourFE/horus/master/images/horus.jpg)
 
 网页统计工具
 
