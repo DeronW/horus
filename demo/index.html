@@ -2,16 +2,13 @@
     <meta charset="utf-8" />
     <script>
         _FPP_Horus_Config = {
-            debug: true,
+            debug: 1,
             // url: 'http://localhost:8000/?ver=1',
             url:  'https://facepp-backend-prod.cn-beijing.log.aliyuncs.com/logstores/beacon-test/track?APIVersion=0.6.0',
             project: 'xxx',
         }    
     </script>
     <script src="../dist/horus.min.js"></script>
-    <script>
-    $horus.report("test")
-    </script>
 </head>
 
 <body>
@@ -23,8 +20,8 @@
 
     <br />˜
 
-    <a href="#CCC" style="display: block; background: #ccc; padding: 10px;" data-horus="test hover">
-            <div id="C">CCC</div>
+    <a href="#CCC" style="display: block; background: #ccc; padding: 10px;" ho-click="xxxevent:test hover">
+            <div id="C" style="background: purple; color: white;">CCC</div>
         </a>
 
         <br /> <br /> <br /> <br /> <br />
@@ -33,6 +30,15 @@
         <br /> <br /> <br /> <br /> <br />
 
         <a id="e">
-            <div id="ed">这是一段中文</div>
+            <div id="ed">这是一段中文
+                <div>child node</div>
+            </div>
         </a>
+
+    <div ho-click="eclick:test yoyoyo">
+        <div>
+            <div>eeeee</div>
+            <div>e2e2e2</div>
+        </div>
+    </div>
 </body>

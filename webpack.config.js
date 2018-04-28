@@ -16,8 +16,8 @@ module.exports = {
             exclude: /(node_modules|bower_components)/,
             use: {
                 loader: 'babel-loader',
-                babelrc: false,
                 options: {
+                    babelrc: false,
                     presets: [['@babel/preset-env', {
                         "targets": {
                             "browsers": ["last 2 versions", "safari >= 7"]

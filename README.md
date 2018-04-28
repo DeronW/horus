@@ -20,10 +20,11 @@
 
 * [x] ``click`` 事件, 默认全部监听
 * [x] ``hover`` 事件**必须**绑定监听
-* [ ] ``link`` 事件, TODO
+* [ ] ``link`` 事件, no plan
 * [ ] ``scroll`` 事件, TODO
 * [ ] 业务流程 事件, TODO
-* [ ] React / Vue 支持, TODO
+* [ ] React 的支持, TODO
+* [ ] Vue 的支持, TODO
 
 ## Installation
 
@@ -115,15 +116,11 @@ project     |字符串     |是 |   不同的项目需要配置不同的项目�
 
 ### 抓取数据说明
 
-自动抓取范围
+#### 自动抓取范围
 
 * 点击事件
-* 链接事件
 
-
-指定抓取范围
-
-主动上报事件
+#### 主动上报事件
 
 ```javascript
 
@@ -142,14 +139,44 @@ project     |字符串     |是 |   不同的项目需要配置不同的项目�
 
 ```
 
-``event_name`` 的值参考 Wiki [https://wiki.megvii-inc.com/pages/viewpage.action?pageId=16974900](https://wiki.megvii-inc.com/pages/viewpage.action?pageId=16974900)
+``event_name`` 的详细内容参考底部 "事件类型"
 
-### HTML Support
+#### 指定抓取范围
+
+核心思路: 在最终渲染(无论是SSR还是SPA,最终都会生成HTML的结构)的内容中, 没有能够明确区分每个元素的标记. 所以, 精细的统计功能需要通过给目标元素添加特殊标记来实现.
+
+**标记说明**
+
+目前支持2种标记方式, 均为在HTML中添加特殊属性
+
+通用格式:
+
+```html
+
+    <div 
+        ho-click="事件类型:说明文字"
+        ho-hover="事件类型:说明文字"
+    >
+        <!-- fragment -->
+    </div>
+
+```
+
+* 事件类型: 的详细内容参考底部 "事件类型"
+* 说明文字: 附加说明, 可以不填
+
+* ho-click: 监听点击事件
+* ho-hover: 监听鼠标移入事件(很短时间内只会触发一次, 鼠标快速滑动经过的位置会被忽略)
+
+例子:
 
 ```html
 <div>
-    <div ho-hover="EVENT_NAME:TEXT_TITLE" ho-click="EVENT_NAME:TEXT_TITLE">
-        <a ho-click="product_compare_try:点击本页“申请测试”按钮">
+    <div 
+        ho-hover="solution_facelogin_hover:鼠标移动到“刷脸登录”的hover状态" 
+        ho-click="financial_contact_top"> <!-- 只有事件名称, 描述可以为空 -->
+        <a 
+            ho-click="product_compare_try:点击本页“申请测试”按钮">
             <button>这是一段文字</button>
         </a>
         ...other context
@@ -165,8 +192,11 @@ project     |字符串     |是 |   不同的项目需要配置不同的项目�
     class C extends React.Component {
         render(){
             return <div>
-                <div ho-hover="EVENT_NAME:TEXT_TITLE" ho-click="EVENT_NAME:TEXT_TITLE">
-                    <a ho-click="product_compare_try:点击本页“申请测试”按钮">
+                <div 
+                    ho-hover="EVENT_NAME:TEXT_TITLE" 
+                    ho-click="EVENT_NAME:TEXT_TITLE">
+                    <a 
+                        ho-click="product_compare_try:点击本页“申请测试”按钮">
                         <button>这是一段文字</button>
                     </a>
                     {...data}
@@ -176,3 +206,15 @@ project     |字符串     |是 |   不同的项目需要配置不同的项目�
     }
 
 ```
+
+参考: [https://reactjs.org/blog/2017/09/08/dom-attributes-in-react-16.html](https://reactjs.org/blog/2017/09/08/dom-attributes-in-react-16.html)
+
+### Vue Support
+
+TODO:
+
+
+## 参考
+
+
+事件类型 的值参考 Wiki [https://wiki.megvii-inc.com/pages/viewpage.action?pageId=16974900](https://wiki.megvii-inc.com/pages/viewpage.action?pageId=16974900)

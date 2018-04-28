@@ -1,45 +1,46 @@
+import getXPath from '../xpath.js'
+
 function Click(event) {
-    let target = event.target;
-    while (target && target != document) {
-        if (target.tagName == 'A' && target.href != '')
-            return;
-        target = target.parentNode
-    }
+    let target = event.target
+
+    let info = pick_info(event.target)
 
     return {
-        event: 'click',
-        title: get_title(event.target),
-        desc: get_desc(event.target),
-        xpath: get_xpath(event.target),
+        mark: info.mark,
+        desc: info.text,
+        xpath: getXPath(event.target),
         pageX: event.pageX,
         pageY: event.pageY
     }
 }
 
-function get_title(element) {
-    if (element == document.body)
-        return 'pointless click';
-    return pick_text(element)
-}
-
-function get_desc(element) {
-    if (element == document.body)
-        return '点击在了空白区域';
-
-    return ''
-}
-
-function get_xpath() {
-    return 'TODO'
-}
-
-function pick_text(element) {
-    let t = element.innerText;
-    let e = element.getAttribute('data-horus');
-    if (e) {
-        return e
+function pick_info(element) {
+    if (element == document.body) {
+        return {
+            mark: 'click:body',
+            text: 'pointless click'
+        }
     }
-    return t.substr(0, 10)
+
+    let mark, text = element.innerText.substr(0, 20)
+    let testament = findAncestorMark(element)
+    if (testament) {
+        let r = testament.split(':')
+        mark = r[0]
+        if (r[1]) text = r[1]
+    }
+    return {
+        mark: 'click' + (mark ? ':' : '') + mark,
+        text: text
+    }
+}
+
+function findAncestorMark(src, cnd) {
+    while (src && src != document) {
+        let mark = src.getAttribute('ho-click')
+        if (mark) return mark
+        src = src.parentNode
+    }
 }
 
 export default Click

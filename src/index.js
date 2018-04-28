@@ -123,8 +123,8 @@ class Horus {
     }
 
     decorator(event_type, data) {
-        for (let i in data)
-            data[i] = escape(data[i])
+        // for (let i in data)
+        //     data[i] = escape(data[i])
 
         let schema = {
             time: new Date().getTime(),
@@ -139,9 +139,9 @@ class Horus {
             custom: data
         }
 
-
         if (this.opt.debug) {
             log("Horus reporting: ", schema)
+            log(schema.custom.xpath)
         }
         return schema
     }

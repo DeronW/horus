@@ -5,7 +5,7 @@ const USER_ID = "__HORUS_USER_ID"
 function geUserID() {
     let uid = JSCookie.get(USER_ID)
     if (!uid) {
-        uid = "anonymouse." + (new Date().getTime() / 1000 + Math.random())
+        uid = "anonym." + (new Date().getTime() / 1000 + Math.random())
         let host = location.host.split(".")
         let domain = ["*"]
         domain[2] = host.pop()

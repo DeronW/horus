@@ -1,3 +1,5 @@
+import getXPath from '../xpath.js'
+
 function Hover(event) {
     let go = false,
         target = event.target;
@@ -14,7 +16,7 @@ function Hover(event) {
         event: 'hover',
         title: get_title(event.target),
         desc: get_desc(event.target),
-        xpath: get_xpath(event.target)
+        xpath: getXPath(event.target)
     }
 }
 
@@ -23,10 +25,6 @@ function get_title(element) {
 }
 
 function get_desc(element) {
-
-}
-
-function get_xpath() {
     return 'TODO'
 }
 
