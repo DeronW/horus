@@ -141,3 +141,36 @@ project     |字符串     |是 |   不同的项目需要配置不同的项目�
     $horus.occur('event_name', '这是一段需要被记录的数据')
 
 ```
+
+### HTML Support
+
+```html
+<div>
+    <div ho-hover="EVENT_NAME:TEXT_TITLE" ho-click="EVENT_NAME:TEXT_TITLE">
+        <a ho-click="product_compare_try:点击本页“申请测试”按钮">
+            <button>这是一段文字</button>
+        </a>
+        ...other context
+    </div>
+</div>
+
+```
+
+### React Support
+
+```javascript
+
+    class C extends React.Component {
+        render(){
+            return <div>
+                <div ho-hover="EVENT_NAME:TEXT_TITLE" ho-click="EVENT_NAME:TEXT_TITLE">
+                    <a ho-click="product_compare_try:点击本页“申请测试”按钮">
+                        <button>这是一段文字</button>
+                    </a>
+                    {...data}
+                </div>
+            </div>
+        }
+    }
+
+```
