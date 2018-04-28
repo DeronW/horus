@@ -8,8 +8,8 @@ function Click(event) {
 
     return {
         event: 'click',
-        title: escape(get_title(event.target)),
-        desc: escape(get_desc(event.target)),
+        title: get_title(event.target),
+        desc: get_desc(event.target),
         xpath: get_xpath(event.target),
         pageX: event.pageX,
         pageY: event.pageY

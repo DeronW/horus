@@ -1,24 +1,25 @@
-import './version.js'
-import Schema from './schema.js'
-import Serialize from './serialize.js'
+import "./version.js"
+import Schema from "./schema.js"
+import Serialize from "./serialize.js"
+import MakeRequest from "./request.js"
 
-import request, {
-    MakeRequest
-} from './request.js'
+import Listeners from "./listeners"
+import Throttle from "./throttle.js"
+import Cookie from "./cookie.js"
 
-import Listeners from './listeners'
-import Throttle from './throttle.js'
-import Cookie from './cookie.js'
+function log() {
+    window["console"].log(...arguments)
+}
 
 class Horus {
     constructor(options) {
         this._done = false
         this.opt = Object.assign({
-            url: '',
-            // project: '',
+            url: "",
+            // project: "",
             account_id: Cookie.getAccountID(),
             debug: false,
-            request_type: 'auto',
+            request_type: "auto",
             listen: {
                 click: true,
                 link: false,
@@ -42,12 +43,12 @@ class Horus {
         if (this.opt.hasOwnProperty(k)) {
             this.opt[k] = v
         } else {
-            console.log(`Horus config: ${k} has been ignored`)
+            log(`Horus config: ${k} has been ignored`)
         }
     }
 
     setConfig(key, value) {
-        let options = typeof key === 'object' ? key : {
+        let options = typeof key === "object" ? key : {
             [key]: value
         }
 
@@ -57,11 +58,11 @@ class Horus {
     }
 
     ready(cb) {
-        if (document.readyState === 'complete') {
+        if (document.readyState === "complete") {
             cb()
         } else {
-            document.addEventListener('DOMContentLoaded', function () {
-                // document.removeEventListener('DOMContentLoaded', arguments.callee, false);
+            document.addEventListener("DOMContentLoaded", function () {
+                // document.removeEventListener("DOMContentLoaded", arguments.callee, false);
                 cb()
             }, false)
         }
@@ -70,10 +71,10 @@ class Horus {
     observe() {
         this.observer = new MutationObserver(function (mutations) {
             mutations.forEach(function (mutation) {
-                console.log(mutation.target)
-                console.log(mutation.addedNodes)
-                console.log(mutation.removedNodes)
-            });
+                log(mutation.target)
+                log(mutation.addedNodes)
+                log(mutation.removedNodes)
+            })
         })
         this.observer.observe(document.body, {
             // 监听子节点
@@ -86,15 +87,16 @@ class Horus {
     }
 
     addListener(name, fn) {
-        if (!this.listners[name]) throw Error('Horus: 没有这种监听类型');
+        if (!this.listners[name]) throw Error("Horus: 没有这种监听类型")
+
         this.listners[name].push(fn)
     }
 
     dispatch(name, event) {
         (this.listners[name] || []).forEach(fn => {
-            if (typeof fn === 'function') {
-                let data = fn(event);
-                data && this.report(data)
+            if (typeof fn === "function") {
+                let data = fn(event)
+                data && this._report(name, data)
             }
         })
     }
@@ -102,33 +104,33 @@ class Horus {
     // 开始监听
     start() {
         if (this._done) {
-            throw Error('Horus 不能重复监听全局事件')
+            throw Error("Horus 不能重复监听全局事件")
         } else {
             this._done = true
         }
 
         // 点击事件
         if (this.opt.listen.click) {
-            document.addEventListener('click', e => this.dispatch('click', e))
+            document.addEventListener("click", e => this.dispatch("click", e))
         }
 
         // hover 事件
         if (this.opt.listen.hover) {
-            document.addEventListener('mouseover', Throttle(function (e) {
-                this.dispatch('hover', e)
+            document.addEventListener("mouseover", Throttle(function (e) {
+                this.dispatch("hover", e)
             }.bind(this), 300))
         }
 
         // 链接点击
         // if (this.opt.listen.link) {
-        //     document.addEventListener('click', e => this.dispatch('link', e))
+        //     document.addEventListener("click", e => this.dispatch("link", e))
         // }
         return this
     }
 
     decorator(event_type, data) {
         for (let i in data)
-            data[i] = escape(data[i]);
+            data[i] = escape(data[i])
 
         let schema = {
             time: new Date().getTime(),
@@ -136,7 +138,7 @@ class Horus {
             event_id: new Date().getTime() + "-" + Math.random().toString().substr(2),
             event: event_type,
             properties: Object.assign({
-                cookie: '',
+                cookie: "",
                 account_id: Cookie.getAccountID(),
                 user_id: Cookie.geUserID()
             }, Schema.Properties),
@@ -145,7 +147,7 @@ class Horus {
 
 
         if (this.opt.debug) {
-            console.log('Horus reporting: ', schema)
+            log("Horus reporting: ", schema)
         }
         return schema
     }
@@ -155,10 +157,10 @@ class Horus {
     }
 
     _report(event_type, data) {
-        let url = this.opt.url;
-        if (url.indexOf('?') < 0) url += '?'
-        url += '&data=' + Serialize(this.decorator(event_type, data))
-        url += '&_=' + (new Date()).getTime()
+        let url = this.opt.url
+        if (url.indexOf("?") < 0) url += "?"
+        url += "&data=" + Serialize(this.decorator(event_type, data))
+        url += "&_=" + (new Date()).getTime()
         MakeRequest(this.request_type, url)
     }
 }

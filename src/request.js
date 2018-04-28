@@ -11,10 +11,10 @@ function AjaxRequest(url) {
 }
 
 function ImageRequest(url) {
-    let img = document.createElement('img')
-    img.style.display = 'none';
+    let img = document.createElement("img")
+    img.style.display = "none"
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         img.onload = function () {
             document.body.removeChild(img)
             resolve()
@@ -25,11 +25,11 @@ function ImageRequest(url) {
 }
 
 function MakeRequest(request_type, url) {
-    return request_type == 'image' ? ImageRequest(url) : AjaxRequest(url)
+    return request_type == "image" ? ImageRequest(url) : AjaxRequest(url)
 }
 
 export {
-    MakeRequest,
+    MakeRequest as default,
     ImageRequest,
     AjaxRequest
 }
