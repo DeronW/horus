@@ -30,7 +30,7 @@ function pick_info(element) {
         if (r[1]) text = r[1]
     }
     return {
-        mark: 'click' + (mark ? ':' : '') + mark,
+        mark: 'click' + (mark ? ':' + mark : ''),
         text: text
     }
 }

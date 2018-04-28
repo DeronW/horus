@@ -34,9 +34,9 @@ https://raw.githubusercontent.com/HonourFE/horus/master/horus.min.js
 
 * 通过 npm 安装
 
-> npm install @facepp/horus
+> npm install @honour/horus
 
-https://www.npmjs.com/package/@facepp/horus
+https://www.npmjs.com/package/@honour/horus
 
 
 ### 用法一
@@ -61,7 +61,7 @@ https://www.npmjs.com/package/@facepp/horus
 
 ```javascript
 
-    import Horus from '@facepp/horus'
+    import Horus from '@honour/horus'
 
     const $horus = new Horus({
         project: '__PROJECT_NAME__',
@@ -76,11 +76,9 @@ https://www.npmjs.com/package/@facepp/horus
 
 ### 配置参数说明
 
-javascript文件区分国内国外的加载地址
+CDN 引用地址 [https://unpkg.com/@honour/horus@0.0.9/dist/horus.min.js](https://unpkg.com/@honour/horus@0.0.9/dist/horus.min.js)
 
-* 国内加载地址[https://bj-qa-test-asset.oss-cn-beijing.aliyuncs.com/javascripts/horus-0.0.6.min.js](https://bj-qa-test-asset.oss-cn-beijing.aliyuncs.com/javascripts/horus-0.0.6.min.js)
-* 国外加载地址 [https://bj-qa-test-asset.oss-cn-beijing.aliyuncs.com/javascripts/horus-0.0.6.min.js](https://bj-qa-test-asset.oss-cn-beijing.aliyuncs.com/javascripts/horus-0.0.6.min.js)
-
+区分国内国外的加载地址, 请联系Author
 
 字段 | 类型 | 必填 | 说明 | 用途
 --- | --- | --- | --- | ---
@@ -93,7 +91,7 @@ project     |字符串     |是 |   不同的项目需要配置不同的项目�
 ```javascript
 {
     time: 1504520237556, // ms
-    project: "FACEPP-WEB",
+    project: "XXX-WEB",
     event: "click",
     properties: { 
         cookie: "",
@@ -104,7 +102,7 @@ project     |字符串     |是 |   不同的项目需要配置不同的项目�
         account_id: "xxxxxxxxxxx",
     }
     custom: {
-        domain: 'www.faceplusplus.com.cn',
+        domain: 'www.domain.com',
         version: `Horus/0.1.0`,
         xpath: '',
         title: '标题',
@@ -173,7 +171,7 @@ project     |字符串     |是 |   不同的项目需要配置不同的项目�
 ```html
 <div>
     <div 
-        ho-hover="solution_facelogin_hover:鼠标移动到“刷脸登录”的hover状态" 
+        ho-hover="solution_login_hover:鼠标移动到“刷脸登录”的hover状态" 
         ho-click="financial_contact_top"> <!-- 只有事件名称, 描述可以为空 -->
         <a 
             ho-click="product_compare_try:点击本页“申请测试”按钮">
@@ -217,4 +215,4 @@ TODO:
 ## 参考
 
 
-事件类型 的值参考 Wiki [https://wiki.megvii-inc.com/pages/viewpage.action?pageId=16974900](https://wiki.megvii-inc.com/pages/viewpage.action?pageId=16974900)
+事件类型 的值参考 [Wiki](https://wiki.megvii-inc.com/pages/viewpage.action?pageId=16974900)

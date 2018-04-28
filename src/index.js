@@ -138,6 +138,12 @@ class Horus {
             }, Schema.Properties()),
             custom: data
         }
+        // 旧字段, 需要兼容
+        if (schema.custom.mark) {
+            let t = schema.custom.mark.split(':')
+            if (t[0])
+                schema.event_type = t[0]
+        }
 
         if (this.opt.debug) {
             log("Horus reporting: ", schema)
