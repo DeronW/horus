@@ -142,6 +142,8 @@ project     |字符串     |是 |   不同的项目需要配置不同的项目�
 
 ```
 
+``event_name`` 的值参考 Wiki [https://wiki.megvii-inc.com/pages/viewpage.action?pageId=16974900](https://wiki.megvii-inc.com/pages/viewpage.action?pageId=16974900)
+
 ### HTML Support
 
 ```html
