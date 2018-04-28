@@ -3,6 +3,10 @@
 
 ![eye](https://raw.githubusercontent.com/FaceFE/horus/master/images/horus.jpg)
 
+### Test
+
+    npm run test
+
 网页统计工具
 
 ### requirement
