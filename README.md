@@ -30,7 +30,7 @@
 
 * 下载生产环境代码 (推荐下载当前最新版本)
 
-https://raw.githubusercontent.com/HonourFE/horus/master/horus.min.js
+https://unpkg.com/@honour/horus@0.1.0/dist/horus.min.js
 
 * 通过 npm 安装
 
