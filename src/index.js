@@ -141,7 +141,7 @@ class Horus {
                 cookie: "",
                 account_id: Cookie.getAccountID(),
                 user_id: Cookie.geUserID()
-            }, Schema.Properties),
+            }, Schema.Properties()),
             custom: data
         }
 
