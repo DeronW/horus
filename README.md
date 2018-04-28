@@ -3,13 +3,15 @@
 
 ![eye](https://raw.githubusercontent.com/FaceFE/horus/master/images/horus.jpg)
 
+网页统计工具
+
 ### Test
 
     npm run test
 
-网页统计工具
+代码库测试(部分覆盖)
 
-### requirement
+### Requirement
 
 * 网页编码需要采用 utf-8
 * 完整支持PC端, 不完整支持移动端
