@@ -30,7 +30,7 @@
 
 * 下载生产环境代码 (推荐下载当前最新版本)
 
-https://unpkg.com/@honour/horus@0.1.0/dist/horus.min.js
+https://unpkg.com/@honour/horus@0.1.2/dist/horus.min.js
 
 * 通过 npm 安装
 
@@ -76,15 +76,11 @@ https://www.npmjs.com/package/@honour/horus
 
 ### 配置参数说明
 
-CDN 引用地址 [https://unpkg.com/@honour/horus@0.0.9/dist/horus.min.js](https://unpkg.com/@honour/horus@0.0.9/dist/horus.min.js)
-
-区分国内国外的加载地址, 请联系Author
-
-字段 | 类型 | 必填 | 说明 | 用途
---- | --- | --- | --- | ---
-alias       | 字符串    |  |    全局别名 | 方便全局调用
-url         |字符串     |是 |   服务地址| 上报信息的服务器地址(不能带有\?参数)
-project     |字符串     |是 |   不同的项目需要配置不同的项目名称
+字段 | 类型 | 说明 | 用途
+--- | --- | --- | ---
+alias       | 字符串    |   全局别名 | 方便全局调用
+url (必填)         |字符串     |   服务地址| 上报信息的服务器地址(不能带有\?参数)
+project (必填)    |字符串     |  不同的项目需要配置不同的项目名称
 
 ### 上报数据
 
