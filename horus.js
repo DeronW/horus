@@ -1,7 +1,7 @@
 import Horus from './src'
 
 const GLOBAL_NAME = '_FPP_Horus'
-const GLOBAL_ALIAS_NAME = '$horus'
+let GLOBAL_ALIAS_NAME = '$horus'
 const GLOBAL_CONFIG = '_FPP_Horus_Config'
 
 document.addEventListener('DOMContentLoaded', function () {

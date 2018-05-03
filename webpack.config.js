@@ -6,17 +6,13 @@ const Module = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-            loader: 'babel-loader',
-            options: {
-                babelrc: false,
-                presets: [['@babel/preset-env', {
-                    "targets": {
-                        "browsers": ["last 2 versions", "safari >= 7"]
-                    }
-                }]]
-            }
+            loader: 'babel-loader'
         }
     }]
+}
+
+const Optimization = {
+    minimize: true
 }
 
 module.exports = [{
@@ -27,9 +23,7 @@ module.exports = [{
         library: 'Horus',
         libraryTarget: 'umd'
     },
-    optimization: {
-        minimize: true
-    },
+    optimization: Optimization,
     module: Module
 }, {
     entry: "./horus.js",
@@ -59,8 +53,6 @@ module.exports = [{
             root: 'UAParser'
         }
     },
-    optimization: {
-        minimize: true
-    },
+    optimization: Optimization,
     module: Module
 }]

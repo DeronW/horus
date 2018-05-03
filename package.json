@@ -3,17 +3,19 @@
   "author": "RichGreenwood",
   "main": "src/index.js",
   "version": "0.1.4",
-  "keywords": ["horus"],
+  "keywords": [
+    "horus"
+  ],
   "scripts": {
     "start": "webpack --mode=development --watch",
     "test": "mocha --require babel-register",
     "lint": "eslint src/**.js",
-    "build": "webpack --mode=production"
+    "build": "BABEL_ENV=build webpack --mode=production"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.46",
-    "@babel/preset-env": "^7.0.0-beta.46",
-    "babel-loader": "^8.0.0-beta.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
     "eslint": "^4.19.1",
     "mocha": "^5.1.1",
     "webpack": "^4.6.0",
