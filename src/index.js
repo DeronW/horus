@@ -123,8 +123,10 @@ class Horus {
     }
 
     decorator(event_type, data) {
-        // for (let i in data)
-        //     data[i] = escape(data[i])
+        let custom = data || {}
+        
+        if(typeof(custom) != 'object') 
+            custom = {msg: String(data)}
 
         let schema = {
             time: new Date().getTime(),
@@ -136,7 +138,7 @@ class Horus {
                 account_id: Cookie.getAccountID(),
                 user_id: Cookie.geUserID()
             }, Schema.Properties()),
-            custom: data
+            custom: custom
         }
         // 旧字段, 需要兼容
         if (schema.custom.mark) {
@@ -147,7 +149,7 @@ class Horus {
 
         if (this.opt.debug) {
             log("Horus reporting: ", schema)
-            log(schema.custom.xpath)
+            log(schema.custom && schema.custom.xpath)
         }
         return schema
     }
