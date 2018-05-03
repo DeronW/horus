@@ -1,6 +1,11 @@
 # CHANGELOG
 
 
+### 0.1.9
+
+fix bug
+
+``$horus.occur('event type')``
 
 ### 0.1.8
 
