@@ -1,8 +1,8 @@
 {
   "name": "@honour/horus",
   "author": "RichGreenwood",
-  "main": "src/index.js",
-  "version": "0.1.4",
+  "main": "dist/horus.min.js",
+  "version": "0.1.7",
   "keywords": [
     "horus"
   ],
@@ -10,7 +10,7 @@
     "start": "webpack --mode=development --watch",
     "test": "mocha --require babel-register",
     "lint": "eslint src/**.js",
-    "build": "BABEL_ENV=build webpack --mode=production"
+    "build": "webpack --mode=production"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

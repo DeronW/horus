@@ -16,20 +16,20 @@ const Optimization = {
 }
 
 module.exports = [{
-    entry: "./horus.js",
+    entry: "./browser.js",
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'horus.min.js',
+        filename: 'horus.singleton.min.js',
         library: 'Horus',
         libraryTarget: 'umd'
     },
     optimization: Optimization,
     module: Module
 }, {
-    entry: "./horus.js",
+    entry: "./src/index.js",
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'horus.simple.min.js',
+        filename: 'horus.min.js',
         library: 'Horus',
         libraryTarget: 'umd'
     },
