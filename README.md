@@ -209,4 +209,4 @@ TODO:
 ## 参考
 
 
-事件类型 的值参考 [Wiki](https://wiki.megvii-inc.com/pages/viewpage.action?pageId=16974900)
+事件类型 的值参考 需要自定义并写入Wiki中
