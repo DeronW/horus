@@ -1,5 +1,11 @@
 # CHANGELOG
 
+### 0.1.10
+
+fix bug
+
+``setCookie`` 时, 设置到2个域名下, \*.domian.com 和 domain.com
+
 
 ### 0.1.9
 
