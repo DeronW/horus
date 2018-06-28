@@ -37,7 +37,8 @@ function pick_info(element) {
 
 function findAncestorMark(src, cnd) {
     while (src && src != document) {
-        let mark = src.getAttribute('ho-click')
+        let mark = src.getAttribute('ho:click')
+        if (!mark) src.getAttribute('ho-click')
         if (mark) return mark
         src = src.parentNode
     }
