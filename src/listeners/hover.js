@@ -1,31 +1,28 @@
-import getXPath from '../xpath.js'
+import getXPath from "../xpath.js";
 
 function Hover(event) {
     let go = false,
-        target = event.target;
+        target = event.target,
+        attr;
     while (target && target != document) {
-        if (target.getAttribute('data-horus')) {
-            go = true
-            break
+        attr = target.getAttribute("ho:hover") || target.getAttribute("ho-hover");
+        if (attr) {
+            go = true;
+            break;
         }
-        target = target.parentNode
+        target = target.parentNode;
     }
     if (!go) return;
 
+    let a = attr.split(':'),
+    eventName = a[0], desc = a[1] || target.innerText.substr(0, 20)
+
     return {
-        event: 'hover',
-        title: get_title(event.target),
-        desc: get_desc(event.target),
-        xpath: getXPath(event.target)
-    }
+        eventType: 'hover',
+        eventName: eventName,
+        desc: desc,
+        xpath: getXPath(target)
+    };
 }
 
-function get_title(element) {
-    return element.innerText
-}
-
-function get_desc(element) {
-    return 'TODO'
-}
-
-export default Hover
+export default Hover;

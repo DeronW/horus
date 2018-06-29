@@ -94,7 +94,7 @@ class Horus {
         (this.listners[name] || []).forEach(fn => {
             if (typeof fn === "function") {
                 let data = fn(event)
-                data && this._report(name, data)
+                data && this._report(data.eventName || name, data)
             }
         })
     }
@@ -141,11 +141,7 @@ class Horus {
             custom: custom
         }
         // 旧字段, 需要兼容
-        if (schema.custom.mark) {
-            let t = schema.custom.mark.split(':')
-            if (t[0])
-                schema.event_type = t[0]
-        }
+        if (schema.custom.eventType) schema.event_type = schema.custom.eventType;
 
         if (this.opt.debug) {
             log("Horus reporting: ", schema)

@@ -187,12 +187,16 @@ project (必填)    |字符串     |  不同的项目需要配置不同的项目
         render(){
             return <div>
                 <div 
-                    ho-hover="EVENT_NAME:TEXT_TITLE" 
-                    ho-click="EVENT_NAME:TEXT_TITLE">
+                    ho:hover="HOVER_EVENT_NAME"
+                    ho-click="CLICK_EVENT_NAME:TEXT_TITLE">
                     <a 
                         ho-click="product_compare_try:点击本页“申请测试”按钮">
                         <button>这是一段文字</button>
                     </a>
+                    <div ho-hover="HOVER_EVENT_NAME"
+                        ho:click="CLICK_EVENT_NAME">
+                        Another field
+                    </div>
                     {...data}
                 </div>
             </div>
@@ -203,7 +207,19 @@ project (必填)    |字符串     |  不同的项目需要配置不同的项目
 
 ### Vue Support
 
-TODO:
+```html
+
+    <template>
+        <div>
+            <button ho:click="CLICK_EVENT_NAME">Click</button>
+            <button ho-click="CLICK_EVENT_NAME2">Click2</button>
+
+            <button ho:hover="HOVER_EVENT_NAME">Hover</button>
+            <button ho-hover="HOVER_EVENT_NAME2">Hover2</button>
+        </div>
+    </template>
+
+```
 
 
 ## 参考
