@@ -2,7 +2,7 @@
   "name": "@honour/horus",
   "author": "RichGreenwood",
   "main": "dist/horus.min.js",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Another wheel",
   "keywords": [
     "horus"

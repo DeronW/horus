@@ -15,7 +15,7 @@ function Hover(event) {
     if (!go) return;
 
     let a = attr.split(':'),
-    eventName = a[0], desc = a[1] || target.innerText.substr(0, 20)
+    eventName = a[0], desc = a[1] || (target.innerText || '').substr(0, 20)
 
     return {
         eventType: 'hover',

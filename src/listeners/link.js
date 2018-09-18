@@ -41,7 +41,7 @@ function get_xpath() {
 }
 
 function pick_text(element) {
-    let t = element.innerText;
+    let t = element.innerText || '';
     let e = element.getAttribute('data-horus');
     if (e) {
         return e

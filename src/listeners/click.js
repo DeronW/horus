@@ -22,7 +22,7 @@ function pick_info(element) {
     }
 
     let mark,
-        text = element.innerText.substr(0, 20);
+        text = (element.innerText || '').substr(0, 20);
 
     let testament = findAncestorMark(element);
 
