@@ -19,6 +19,7 @@ class Horus {
             project: "Empty",
             account_id: Cookie.getAccountID(),
             debug: false,
+            noDescribe: true,
             request_type: "auto",
             listen: {
                 click: true,
@@ -127,6 +128,12 @@ class Horus {
         
         if(typeof(custom) != 'object') 
             custom = {msg: String(data)}
+
+        if(this.opt.noDescribe){
+            // tips: custom.desc field usually contain UTF-8 coding
+            // this should be caught Base64 encoding error
+            delete custom.desc
+        }
 
         let schema = {
             time: new Date().getTime(),

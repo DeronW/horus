@@ -11,6 +11,6 @@ describe('Serialize', function () {
         Assert.equal(Serialize('中文'), '5Lit5paH')
         
         Assert.equal(Serialize({a: 123}), 'eyJhIjoxMjN9')
-        Assert.equal(Serialize({a: '中文'}), 'eyJhIjoi5Lit5paHIn0=')
+        Assert.equal(Serialize({a: '中文'}), 'eyJhIjoi5Lit5paHIn0')
     });
 });

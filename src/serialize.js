@@ -4,7 +4,7 @@ import {
 
 function Serialize(schema){
     if(typeof schema == "object") schema = JSON.stringify(schema)
-    return Base64.encode(schema)
+    return Base64.encodeURI(schema)
 }
 
 export default Serialize

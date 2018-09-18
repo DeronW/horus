@@ -2,7 +2,7 @@
   "name": "@honour/horus",
   "author": "RichGreenwood",
   "main": "dist/horus.min.js",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "Another wheel",
   "keywords": [
     "horus"
@@ -23,7 +23,7 @@
     "webpack-cli": "^2.0.15"
   },
   "dependencies": {
-    "js-base64": "^2.4.3",
+    "js-base64": "^2.4.9",
     "js-cookie": "^2.2.0",
     "ua-parser-js": "^0.7.17"
   }
