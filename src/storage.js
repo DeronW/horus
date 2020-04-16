@@ -6,7 +6,4 @@ function Supplement() {
     // TODO
 }
 
-export {
-    Save,
-    Supplement
-}
+export { Save, Supplement };

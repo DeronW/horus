@@ -9,7 +9,7 @@ function Click(event) {
         desc: info.text,
         xpath: getXPath(target),
         pageX: event.pageX,
-        pageY: event.pageY
+        pageY: event.pageY,
     };
 }
 
@@ -17,12 +17,12 @@ function pick_info(element) {
     if (element == document.body) {
         return {
             eventName: "",
-            text: "click_on_body"
+            text: "click_on_body",
         };
     }
 
     let mark,
-        text = (element.innerText || '').substr(0, 20);
+        text = (element.innerText || "").substr(0, 20);
 
     let testament = findAncestorMark(element);
 
@@ -33,7 +33,7 @@ function pick_info(element) {
     }
     return {
         eventName: mark,
-        text: text
+        text: text,
     };
 }
 
