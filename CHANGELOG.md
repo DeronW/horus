@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 0.2.4
+
+初始化参数 noDescribe 默认为 false，不会自动删除 desc 内容
+
 ### 0.2.3
 
 fix bug

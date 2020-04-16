@@ -19,7 +19,7 @@ class Horus {
             project: "Empty",
             account_id: Cookie.getAccountID(),
             debug: false,
-            noDescribe: true,
+            noDescribe: false,
             request_type: "auto",
             listen: {
                 click: true,
@@ -131,7 +131,7 @@ class Horus {
 
         if(this.opt.noDescribe){
             // tips: custom.desc field usually contain UTF-8 coding
-            // this should be caught Base64 encoding error
+            // this may be caught Base64 encoding error
             delete custom.desc
         }
 
